@@ -10,6 +10,5 @@
 
 @interface GZAnimationIndicator : UIView
 
-- (void)changeColorOfDotview;
 
 @end

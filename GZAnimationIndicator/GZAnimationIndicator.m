@@ -11,17 +11,12 @@
 
 @interface GZAnimationIndicator ()
 
-@property(nonatomic,strong) CAShapeLayer *shapeLayer;
-
-@property(nonatomic,strong) CAGradientLayer *gradientLayer;
-
-@property(nonatomic,strong) CABasicAnimation *strokeEndAnimation;
-
-@property(nonatomic,strong) NSTimer *timer;
-
-@property(nonatomic,strong) NSMutableArray<UIView *> *dotViews;
-
-@property(nonatomic,assign) NSUInteger index;
+@property(nonatomic,strong) CAShapeLayer                *shapeLayer;
+@property(nonatomic,strong) CAGradientLayer             *gradientLayer;
+@property(nonatomic,strong) CABasicAnimation            *strokeEndAnimation;
+@property(nonatomic,strong) NSTimer                     *timer;
+@property(nonatomic,strong) NSMutableArray<UIView *>    *dotViews;
+@property(nonatomic,assign) NSUInteger                   index;
 
 @end
 
@@ -37,7 +32,7 @@
         
         [self createDotViews];
         
-        [self changeColorOfDotview];
+        //[self changeColorOfDotview];
         
         self.timer = [NSTimer scheduledTimerWithTimeInterval:2.0/12 target:self selector:@selector(changeColorOfDotview) userInfo:nil repeats:YES];
     }
@@ -82,7 +77,6 @@
     //create GradientLayer
     self.gradientLayer = [CAGradientLayer layer];
     self.gradientLayer.frame = self.bounds;
-    //self.gradientLayer.fillMode =  kCAFillModeForwards;
     
     NSMutableArray *colors = [NSMutableArray array];
     for(float i=10.0;i>0.0;i--) {
@@ -93,7 +87,6 @@
     
     self.gradientLayer.colors = colors;
     self.gradientLayer.mask = self.shapeLayer;
-    
     self.gradientLayer.startPoint = CGPointMake(0, 0);//开始点
     self.gradientLayer.endPoint = CGPointMake(1, 0);//结束点
     [self.layer addSublayer:self.gradientLayer];
@@ -103,17 +96,7 @@
     
     [self.shapeLayer addAnimation:self.strokeEndAnimation forKey:@"strokeEnd"];
     
-    //    [self addObserver:self.shapeLayer forKeyPath:@"strokeEnd" options:NSKeyValueObservingOptionNew context:nil];
-    
-    
 }
-
-//- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
-//    if([keyPath isEqualToString:@"strokeEnd"]) {
-//
-//        NSLog(@"11");
-//    }
-//}
 
 
 - (void)createDotViews {
@@ -137,8 +120,6 @@
         [self.dotViews addObject:dot];
         [self addSubview:dot];
     }
-    
-    
 }
 
 
@@ -150,12 +131,12 @@
         _strokeEndAnimation.fromValue = @0;
         _strokeEndAnimation.toValue = @1;
         _strokeEndAnimation.duration = 2.0;
+        _strokeEndAnimation.beginTime = CACurrentMediaTime() + 2.0/12;
         _strokeEndAnimation.repeatCount = HUGE;
         _strokeEndAnimation.removedOnCompletion = YES;
     }
     return _strokeEndAnimation;
 }
-
 
 
 @end
