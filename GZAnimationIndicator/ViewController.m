@@ -7,8 +7,11 @@
 //
 
 #import "ViewController.h"
+#import "GZAnimationIndicator.h"
 
 @interface ViewController ()
+
+@property(nonatomic,strong) NSTimer *timer;
 
 @end
 
@@ -16,7 +19,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    
+    GZAnimationIndicator *indicator = [[GZAnimationIndicator alloc]initWithFrame:CGRectMake(0, 0, 300, 300)];
+    
+    indicator.center = self.view.center;
+    [self.view addSubview:indicator];
+    
 }
 
 

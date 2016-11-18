@@ -13,6 +13,7 @@
 		227AC3C11DDD442800F5B193 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 227AC3BF1DDD442800F5B193 /* Main.storyboard */; };
 		227AC3C31DDD442800F5B193 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 227AC3C21DDD442800F5B193 /* Assets.xcassets */; };
 		227AC3C61DDD442800F5B193 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 227AC3C41DDD442800F5B193 /* LaunchScreen.storyboard */; };
+		227AC3CF1DDD44BE00F5B193 /* GZAnimationIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 227AC3CE1DDD44BE00F5B193 /* GZAnimationIndicator.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,8 @@
 		227AC3C21DDD442800F5B193 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		227AC3C51DDD442800F5B193 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		227AC3C71DDD442800F5B193 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		227AC3CD1DDD44BE00F5B193 /* GZAnimationIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GZAnimationIndicator.h; sourceTree = "<group>"; };
+		227AC3CE1DDD44BE00F5B193 /* GZAnimationIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GZAnimationIndicator.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +63,8 @@
 			children = (
 				227AC3B91DDD442800F5B193 /* AppDelegate.h */,
 				227AC3BA1DDD442800F5B193 /* AppDelegate.m */,
+				227AC3CD1DDD44BE00F5B193 /* GZAnimationIndicator.h */,
+				227AC3CE1DDD44BE00F5B193 /* GZAnimationIndicator.m */,
 				227AC3BC1DDD442800F5B193 /* ViewController.h */,
 				227AC3BD1DDD442800F5B193 /* ViewController.m */,
 				227AC3BF1DDD442800F5B193 /* Main.storyboard */,
@@ -153,6 +158,7 @@
 				227AC3BE1DDD442800F5B193 /* ViewController.m in Sources */,
 				227AC3BB1DDD442800F5B193 /* AppDelegate.m in Sources */,
 				227AC3B81DDD442800F5B193 /* main.m in Sources */,
+				227AC3CF1DDD44BE00F5B193 /* GZAnimationIndicator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
