@@ -15,7 +15,7 @@
 @property(nonatomic,strong) CAGradientLayer             *gradientLayer;
 @property(nonatomic,strong) CABasicAnimation            *strokeEndAnimation;
 @property(nonatomic,strong) NSTimer                     *timer;
-@property(nonatomic,strong) NSMutableArray<UIView *>    *dotViews;
+@property(nonatomic,strong) NSMutableArray<CALayer *>    *dotLayers;
 @property(nonatomic,assign) NSUInteger                   index;
 
 @end
@@ -30,32 +30,31 @@
         
         [self createLayer];
         
-        [self createDotViews];
+        [self createDotLayers];
         
-        //[self changeColorOfDotview];
-        
-        self.timer = [NSTimer scheduledTimerWithTimeInterval:2.0/12 target:self selector:@selector(changeColorOfDotview) userInfo:nil repeats:YES];
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:2.0/12 target:self selector:@selector(changeColorOfDotLayer) userInfo:nil repeats:YES];
     }
     return self;
 }
 
 
-- (void)changeColorOfDotview {
+- (void)changeColorOfDotLayer {
     
     if(self.index == 12) {
         self.index = 0;
         
-        for(UIView *view in self.dotViews){
+        for(CALayer *layer in self.dotLayers){
             
             dispatch_async(dispatch_get_main_queue(), ^{
-                view.backgroundColor = [UIColor redColor];
+                
+                layer.backgroundColor = [UIColor redColor].CGColor;
             });
         }
     }
-    UIView *view = [self.dotViews objectAtIndex:self.index];
+    CALayer *layer = [self.dotLayers objectAtIndex:self.index];
     
     dispatch_async(dispatch_get_main_queue(), ^{
-        view.backgroundColor = [UIColor cyanColor];
+        layer.backgroundColor = [UIColor cyanColor].CGColor;
     });
     self.index = self.index + 1;
     
@@ -99,11 +98,11 @@
 }
 
 
-- (void)createDotViews {
+- (void)createDotLayers {
     
     double unit = M_PI*2/12;
     
-    _dotViews = [NSMutableArray array];
+    _dotLayers = [NSMutableArray array];
     for(int i=0;i<12;i++) {
         
         double arch = unit*i;
@@ -111,14 +110,17 @@
         CGPoint circleCenter = CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2);
         CGFloat radius = self.bounds.size.width/2-30;
         
-        UIView *dot = [[UIView alloc]initWithFrame:CGRectMake(radius*sin(arch)+circleCenter.x, circleCenter.y-radius*cos(arch), 10, 10)];
         
-        dot.layer.cornerRadius = dot.bounds.size.width/2;
-        dot.layer.masksToBounds = YES;
-        dot.backgroundColor = [UIColor redColor];
-       
-        [self.dotViews addObject:dot];
-        [self addSubview:dot];
+        CALayer *dotLayer = [CALayer layer];
+        dotLayer.frame = CGRectMake(radius*sin(arch)+circleCenter.x, circleCenter.y-radius*cos(arch), 10, 10);
+        //CALayer *layer = [[UIView alloc]initWithFrame:CGRectMake(radius*sin(arch)+circleCenter.x, circleCenter.y-radius*cos(arch), 10, 10)];
+        
+        dotLayer.cornerRadius = dotLayer.frame.size.width/2;
+        dotLayer.masksToBounds = YES;
+        dotLayer.backgroundColor = [UIColor redColor].CGColor;
+        
+        [self.dotLayers addObject:dotLayer];
+        [self.layer addSublayer:dotLayer];
     }
 }
 
@@ -127,7 +129,7 @@
     
     if(!_strokeEndAnimation) {
         _strokeEndAnimation = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
-        _strokeEndAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+        _strokeEndAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
         _strokeEndAnimation.fromValue = @0;
         _strokeEndAnimation.toValue = @1;
         _strokeEndAnimation.duration = 2.0;
@@ -137,6 +139,7 @@
     }
     return _strokeEndAnimation;
 }
+
 
 
 @end
