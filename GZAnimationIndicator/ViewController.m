@@ -20,8 +20,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    GZAnimationIndicator *indicator = [[GZAnimationIndicator alloc]initWithFrame:CGRectMake(0, 0, 300, 300)];
-    
+    GZAnimationIndicator *indicator = [[GZAnimationIndicator alloc]initWithFrame:CGRectMake(0, 0, 300, 300) circleColor:[UIColor redColor] dotColor:[UIColor yellowColor] lightedDotColor:[UIColor cyanColor]];
     indicator.center = self.view.center;
     [self.view addSubview:indicator];
     
