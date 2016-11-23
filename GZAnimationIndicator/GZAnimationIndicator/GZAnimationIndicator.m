@@ -8,7 +8,6 @@
 
 #import "GZAnimationIndicator.h"
 
-
 @interface GZAnimationIndicator ()
 
 @property(nonatomic,strong) CAShapeLayer                *shapeLayer;
@@ -71,7 +70,7 @@
     self.shapeLayer = [CAShapeLayer layer];
     self.shapeLayer.frame = self.bounds;
     
-    UIBezierPath *bezierPath = [UIBezierPath bezierPathWithArcCenter:self.center radius:self.bounds.size.width/2-50 startAngle:-M_PI_2 endAngle:(M_PI*2-M_PI_2) clockwise:YES];
+    UIBezierPath *bezierPath = [UIBezierPath bezierPathWithArcCenter:self.center radius:self.bounds.size.width/3 startAngle:-M_PI_2 endAngle:(M_PI*2-M_PI_2) clockwise:YES];
     
     [self.shapeLayer setStrokeColor:self.circleColor.CGColor];
     [self.shapeLayer setFillColor:[UIColor clearColor].CGColor];
@@ -117,9 +116,10 @@
         double arch = unit*i;
         
         CGPoint circleCenter = CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2);
-        CGFloat radius = self.bounds.size.width/2-30;
+        CGFloat radius = self.bounds.size.width/3+20;
         CALayer *dotLayer = [CALayer layer];
-        dotLayer.frame = CGRectMake(radius*sin(arch)+circleCenter.x, circleCenter.y-radius*cos(arch), 10, 10);
+        dotLayer.frame = CGRectMake( 0, 0, 10, 10);
+        dotLayer.position = CGPointMake(radius*sin(arch)+circleCenter.x, circleCenter.y-radius*cos(arch));
         dotLayer.cornerRadius = dotLayer.frame.size.width/2;
         dotLayer.masksToBounds = YES;
         dotLayer.backgroundColor = self.dotColor.CGColor;
