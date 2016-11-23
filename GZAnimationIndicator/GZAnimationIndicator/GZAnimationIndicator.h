@@ -16,7 +16,7 @@
 @interface GZAnimationIndicator : UIView
 
 /*!
- * @brief 初始化构造器
+ * @brief Constructor
  * @param circleColor Circle color in the center
  * @param dotColor The color of dots around the circle.
  * @param lightedDotColor The color of dots after they are lighted
